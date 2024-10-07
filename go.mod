@@ -6,7 +6,7 @@ require (
 	github.com/gin-gonic/gin v1.10.0
 	github.com/microcosm-cc/bluemonday v1.0.26
 	github.com/mmcdole/gofeed v1.3.0
-	golang.org/x/time v0.5.0
+	golang.org/x/time v0.7.0
 )
 
 require (
