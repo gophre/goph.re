@@ -1,3 +1,4 @@
 CLAUDE.md
 env/github.go
 env/path.go
+users/*
