@@ -1,0 +1,23 @@
+{{ $prevDate := "" }}
+{{ range .articles }}
+	{{ $currentDate := .Date.Format "2006-01-02" }}
+	{{ if ne $prevDate $currentDate }}
+		<h2 class="when">{{ $currentDate }}</h2>
+	{{ end }}
+	{{ $prevDate = $currentDate }}
+	<article{{ if .Vote }} class="{{ .Vote }}"{{ end }}>
+		<h3>Source : {{ .Source.Name }}</h3>
+		<h1>{{ .Name }}</h1>
+		<div>{{ .Resume | safe }}</div>
+		<a href="{{ .URL }}">Lire l'article</a>
+		<hr>
+		{{ if .Vote }}
+			<p>Voted: {{ .Vote }}</p>
+			<button href="{{ .ID }}" onclick="vote('{{ .ID }}', 'GOOD')">GOOD</button>
+			<button href="{{ .ID }}" onclick="vote('{{ .ID }}', 'BAD')">BAD</button>
+		{{ else }}
+			<button href="{{ .ID }}" onclick="vote('{{ .ID }}', 'GOOD')">GOOD</button>
+			<button href="{{ .ID }}" onclick="vote('{{ .ID }}', 'BAD')">BAD</button>
+		{{ end }}
+	</article>
+{{ end }}

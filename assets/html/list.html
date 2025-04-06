@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+    <title>GOPH.RE</title>
+	<meta name="description" value="a source of news and information related to the Go programming language" />
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+	<style>
+		/* Firefox */
+		* {
+		  scrollbar-width: thin;
+		  scrollbar-color: #8f54a0 #000000;
+		}
+	  
+		/* Chrome, Edge, and Safari */
+		*::-webkit-scrollbar {
+		  width: 12px;
+		}
+	  
+		*::-webkit-scrollbar-track {
+		  background: #00000000;
+		}
+	  
+		*::-webkit-scrollbar-thumb {
+		  background-color: #88888888;
+		  border-radius: 10px;
+		}
+
+		body {
+			font-family: Raleway, sans-serif;
+			width: 100%;
+			margin: 0;
+			padding: 0;
+			background: #103053;
+			overflow-x:hidden !important;
+			overflow-y:scroll !important;
+		}
+		.container {
+			margin: 30px auto;
+		}
+		article { 
+			overflow-x: auto;
+			width: 90vw;
+			margin: 30px auto;
+			padding: 26px 28px 28px;
+			border-radius: 12px;
+			box-shadow: #00adef 0 0 17px;
+			background: #fff;
+			cursor: zoom-in;
+		}
+		article img { 
+			width: auto;
+			height: auto;
+			max-width: 80vw;
+			max-height: 80vh;
+		}
+		h1 {
+			margin: 0 0 12px;
+			color: #103053;
+		}
+		h3 {
+			margin: 0;
+			text-transform: uppercase;
+			color: #00adef;
+		}
+		div, p, a {
+			color: #103053;
+			text-decoration: none;
+		}
+		h2 {
+			color: #fff;
+			width: 100%;
+			margin: 20px 0 0;
+			padding: 50px 5vw 0;
+			background: #103053;
+			box-shadow: #103053 0 0 17px;
+			position: sticky;
+			top: 0;
+			z-index: 32;
+		}
+		article { 
+			transition-duration: 0.23s;
+		}
+		article.GOOD { 
+			box-shadow: #000 0 0 42px, #000000 0 0 17px, #000000 0 0 17px;
+			background: lightyellow;
+		}
+		article.BAD { 
+			background: rgb(238, 178, 178);
+		}
+		article.BAD h3 { 
+			color: #000000;
+		}
+	</style>
+</head>
+<body>
+<div class="container">
+{{ if .isEmpty }}
+<h2>No data yet.</h2>
+{{ else }}
+<script>
+// Function to display articles based on localStorage data
+function showLocalStorageBookmarks() {
+    const articles = document.querySelectorAll('article');
+    let hasVisibleArticles = false;
+    
+    articles.forEach(article => {
+        const id = article.dataset.id;
+        const voteValue = localStorage.getItem(`vote_${id}`);
+        
+        // If localStorageOnly is true, only show articles marked as GOOD in localStorage
+        {{ if .localStorageOnly }}
+        if (voteValue === 'GOOD') {
+            article.style.display = 'block';
+            hasVisibleArticles = true;
+        } else {
+            article.style.display = 'none';
+        }
+        {{ else }}
+        // Add classes based on localStorage votes
+        if (voteValue) {
+            article.classList.remove("GOOD", "BAD");
+            article.classList.add(voteValue);
+        }
+        {{ end }}
+    });
+    
+    // Show message if no bookmarks in localStorage
+    {{ if .localStorageOnly }}
+    if (!hasVisibleArticles) {
+        const container = document.querySelector('.container');
+        const message = document.createElement('h2');
+        message.textContent = 'No bookmarks in localStorage.';
+        container.appendChild(message);
+    }
+    {{ end }}
+}
+
+// Run on page load
+window.addEventListener('DOMContentLoaded', () => {
+    showLocalStorageBookmarks();
+    
+    // Also call the function from wall.js if it exists
+    if (typeof updateDateHeadersVisibility === 'function') {
+        updateDateHeadersVisibility();
+    }
+});
+</script>
+
+{{ $prevDate := "" }}
+{{ range $idx, $article := .articles }}
+	{{ $currentDate := $article.Date.Format "02 Jan 2006" }}
+	{{ if ne $prevDate $currentDate }}
+		<h2 class="date-header">{{ $currentDate }}</h2>
+	{{ end }}
+	<article class="{{$article.Vote}}" data-id="{{$article.ID}}">
+		<small>Source : {{ $article.Source.Name }}</small>
+		<h1>{{ $article.Name }}</h1>
+	</article>
+	{{ $prevDate = $currentDate }}
+{{ end }}
+{{ end }}
+</div>
+<script>
+
+document.querySelectorAll('article').forEach(title => {
+    title.addEventListener('click', event => {
+        event.preventDefault();
+        
+        const id = title.dataset.id;
+        fetch(`/article/${id}`)
+            .then(response => response.json())
+            .then(post => {
+                // Open the article URL directly in a new tab
+                if (post.url && post.url !== "") {
+                    window.open(post.url, '_blank');
+                } else {
+                    console.error("Article has no URL:", post);
+                }
+                
+                // Still register the vote in the background
+                if (!title.classList.contains('GOOD') && !title.classList.contains('BAD')) {
+                    vote(id, 'GOOD');
+                }
+            })
+            .catch(error => {
+                console.error("Error fetching article:", error);
+            });
+    });
+});
+
+function vote(id, voteValue) {
+    // Store vote in localStorage
+    localStorage.setItem(`vote_${id}`, voteValue);
+    
+    // Send vote to server
+    fetch(`/vote/${id}/${voteValue}`, { method: 'POST' })
+        .then(response => {
+            if (response.ok) {
+                // Find the corresponding article div with the matching ID
+                const articleDiv = document.querySelector(`article[data-id="${id}"]`);
+                if (articleDiv) {
+                    articleDiv.classList.remove("GOOD");
+                    articleDiv.classList.remove("BAD");
+                    articleDiv.classList.add(voteValue);
+                }
+                // Close the modal if possible
+                if (window.Swal && Swal.close) {
+                    Swal.close();
+                }
+            } else {
+                console.log('Failed to submit vote. Please try again.');
+            }
+        })
+        .catch(error => {
+            console.error("Error submitting vote:", error);
+        });
+}
+
+</script>
+</body>
+</html>

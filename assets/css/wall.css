@@ -1,0 +1,370 @@
+@import url('https://fonts.googleapis.com/css2?family=Kanit:wght@200;700&display=swap');
+/* ===== Scrollbar CSS ===== */
+/* Firefox */
+* {
+scrollbar-width: thin;
+scrollbar-color: #8f54a0 #000000;
+}
+
+/* Chrome, Edge, and Safari */
+*::-webkit-scrollbar {
+width: 12px;
+}
+
+*::-webkit-scrollbar-track {
+background: #00000000;
+}
+
+*::-webkit-scrollbar-thumb {
+background-color: #88888888;
+border-radius: 10px;
+}
+
+when {
+	display: block;
+	color: #103053;
+	width: 100%;
+	margin: 0 0 43px 0;
+	padding: 4px 15px 0;
+	background: #051521dd;
+	position: sticky;
+	top: 36px;
+	z-index: 19;
+	font-family: "Kanit", sans-serif;
+	font-size: 30px;
+	font-weight: 700;
+	max-width: 1440px;
+}
+hr {
+	border-color: transparent;
+}
+.minilink {
+	font-size: 12px;
+	line-height: 18px;
+	color: #fff5;
+}
+.minilink:hover {
+	color: #fff;
+}
+.hidden {
+	display: none;
+}
+#searchInput {
+	position: fixed;
+	z-index: 21;
+	top:0;
+	left:0;
+	right:0;
+	padding: 8px 14px;
+	font-family: "Kanit", sans-serif;
+	width: calc(100% - 20px);
+	margin : 0 auto 0;
+	max-width: 1440px;
+	text-align: center;
+	background: #05152144;
+	transition-duration: 0.23s;
+	border: 0;
+	color: #fff;
+	font-weight: 800;
+	-webkit-backdrop-filter: blur(14px);
+	backdrop-filter: blur(14px);
+}
+#searchInput:focus {
+	background: #fff;
+	color: #051521;
+}
+journal {
+	display: block;
+	font-family: "Kanit", sans-serif;
+	font-size: 72px;
+	line-height: 58px;
+	color: #fff;
+	padding: 0;
+	margin: 72px 0 40vh 15px;
+	font-weight: 800;
+	text-align: center;
+}
+journal menu {
+	margin: 72px 0 0;
+	width: 100%;
+	padding: 0;
+}
+journal small {
+	font-size: 24px;
+	line-height: 28px;
+	display: block;
+}
+journal menu,
+journal menu a {
+	color: #fff;
+	text-decoration: none;
+	font-size: 24px;
+	line-height: 28px;
+	display: block;
+}
+journal img {
+	width: 100%;
+	margin: 0 auto;
+	display: flex;
+}
+item {
+	display: block;
+	position: relative;
+}
+html {
+	background: #051521;
+}
+body {
+	font-family: "Kanit", sans-serif;
+	width: 100%;
+	margin: 0;
+	padding: 0;
+	background: #051521 url(/gfx/crowd.png) no-repeat top center fixed;
+	background-size: cover;
+	font-size: 13pt;
+	margin: 0 auto;
+}
+
+#articlesContainer {
+    max-width: 1440px;
+	margin: 0 30px;
+}
+
+
+button {
+	background: #051521;
+	border-radius: 8px;
+	color: #fff;
+	font-family: "Kanit", sans-serif;
+	font-size: 14pt;
+}
+.container {
+	margin: 30px auto;
+}
+article { 
+	display: block;
+	width: 90vw;
+	max-width: 1440px;
+	margin: 0 auto 30px;
+	padding: 16px 14px;
+	border-radius: 0 0 12px 12px;
+	background: #fff8;
+	transition-duration: 0.8s;
+	box-shadow: #00adef 0 1px 2px;
+}
+article article { 
+	padding: 16px 28px;
+	width: calc(100% - 64px);
+	border-radius: 10px;
+	border: 3px solid #051521;
+	box-shadow: unset;
+}
+article pre {
+	display: block;
+	width: 100%;
+	overflow-x: auto;
+	max-width: 1440px;
+}
+article img { 
+	width: auto;
+	height: auto;
+	max-width: 80%;
+	max-height: 80vh;
+	margin: 0 20px 20px 0;
+}
+articletitle {
+	display: block;
+	padding: 0 0 18px;
+	color: #fff;
+	font-weight: 200;
+	font-size:27pt;
+	line-height:24pt;
+	font-family: Kanit;
+}
+articletitle a {
+	color: #fff;
+	text-decoration: none;
+}
+articletitle a:hover {
+	text-decoration: underline;
+}
+articletitle.small, articletitle.small a {
+	font-size:17pt;
+	line-height:14pt;
+}
+articlesource {
+	display: block;
+	font-weight: 700;
+	font-size:12pt;
+	margin: 0 0 0 0;
+	text-transform: uppercase;
+	color: #00adef;
+}
+articlesource a {
+	display: block;
+	color: inherit;
+	text-decoration: none;
+    padding: 0 0 7px 0;
+}
+articlesource a:hover {
+	color: inherit;
+	text-decoration: underline;
+}
+resume, div, p, a {
+	font-family: Kanit;
+	color: #051521;
+}
+
+.more { 
+	margin: 22px 5vw;
+	border-radius: 8px;
+	background: #fff;
+	color: #051521;
+}
+buttons {
+	display: block;
+	background: #051521;
+	box-shadow: #051521 0 0 17px;
+	border-radius: 0;
+	position: sticky;
+	top: 72px;
+	left: 0;
+	right: 0;
+	z-index: 17;
+	width: auto;
+	padding: 12px 15px 0;
+	transition-duration: 0.23s;
+}
+.BAD {
+	display: none;
+}
+
+buttonsblock {
+	display: flex;
+	float: right;
+}
+button.good {
+	border: 0;
+	background: #0a0;
+	color: #fff;
+	font-size: 26px;
+	margin-right: 8px;
+	display: flex;
+}
+button.bad {
+	border: 0;
+	background: #c00;
+	color: #fff;
+	font-size: 13px;
+	display: flex;
+}
+buttons.GOOD button.good { 
+	display: none;
+}
+buttons.GOOD button.bad { 
+	display: none;
+}
+buttons.BAD button.bad { 
+	display: none;
+}
+
+buttons:hover { 
+	filter: hue-rotate(80deg);
+}
+
+article:hover {
+	background: #fff;
+	box-shadow: #00adef 0 30px 47px;
+}
+article article:hover {
+	filter: none;
+}
+article.GOOD, article.GOOD:hover { 
+	box-shadow: #000 0 2px 2px;
+	background: linear-gradient(173deg, #fff 50%,#00adefaa) fixed;
+}
+article.BAD { 
+	display: none;
+}
+article.BAD p {
+	display: none;
+}
+article.BAD h3 { 
+	color: #051521;
+}
+.BAD articlesource {
+	color: #cc0000;
+}
+.GOOD articlesource {
+	color: #00cc00;
+}
+
+uppercase {
+	text-transform: uppercase;
+}
+
+@media (min-width:960px) {
+	item {
+		display: block;
+	}
+	article { 
+		padding: 40px 40px;
+		width: auto;
+		margin: 0 17px 40px;
+	}
+	when {
+		top: 0;
+	}
+	journal {
+		position:fixed; top:42px; left:44px; bottom:0;
+		text-align: right;
+	}
+	buttons {
+		top: 39px;
+	}
+	body {
+		background-size: contain;
+	}
+	#articlesContainer {
+		padding-left: 400px;
+		max-width: 1440px;
+	}
+	#searchInput {
+		max-width: 1440px;
+		left: 400px;
+		right: unset;
+		top: 0;
+	}
+}
+@media (min-width:1900px) {
+	when {
+		top: 0;
+	}
+	journal {
+		position:fixed; top:72px; left:144px; bottom:0;
+		text-align: right;
+	}
+	buttons {
+		top: 39px;
+	}
+	body {
+		background-size: contain;
+	}
+	#articlesContainer {
+		padding-left: calc(50vw - 720px);
+		padding-left: 720px;
+		max-width: 1440px;
+	}
+	#searchInput {
+		width: 720px !important;
+		left: 3px;
+		right: unset;
+		top: 0px;
+	}
+}
+
+@media (min-width:3000px) {
+	body {
+		zoom: 1.2;
+	}
+}

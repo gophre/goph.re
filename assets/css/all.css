@@ -1,0 +1,5 @@
+.BAD {
+	display: block;
+	filter:opacity(0.3) blur(3px);
+	color: rgb(238, 178, 178);
+}

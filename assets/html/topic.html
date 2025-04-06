@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+    <title>GOPH.RE</title>
+	<meta name="description" value="a source of news and information related to the Go programming language" />
+	<base target="_blank" />
+
+	<style>
+@import url('https://fonts.googleapis.com/css2?family=Kanit:wght@200;700&display=swap');
+/* ===== Scrollbar CSS ===== */
+/* Firefox */
+* {
+scrollbar-width: thin;
+scrollbar-color: #8f54a0 #000000;
+}
+
+/* Chrome, Edge, and Safari */
+*::-webkit-scrollbar {
+width: 12px;
+}
+
+*::-webkit-scrollbar-track {
+background: #00000000;
+}
+
+*::-webkit-scrollbar-thumb {
+background-color: #88888888;
+border-radius: 10px;
+}
+
+when {
+	display: block;
+	color: #103053;
+	width: 100%;
+	margin: 0;
+	padding: 4px 15px 0;
+	background: #051521;
+	position: sticky;
+	top: 38px;
+	z-index: 19;
+	font-family: "Kanit", sans-serif;
+	font-size: 30px;
+	font-weight: 700;
+	max-width: 1440px;
+}
+
+.hidden {
+	display: none;
+}
+#searchInput {
+	position: fixed;
+	z-index: 21;
+	top:0;
+	left:0;
+	right:0;
+	padding: 8px 14px;
+	font-family: "Kanit", sans-serif;
+}
+journal {
+	display: block;
+	font-family: "Kanit", sans-serif;
+	font-size: 72px;
+	color: #fff;
+	padding: 0;
+	margin: 72px 0 0 0;
+}
+journal img {
+	width: 100%;
+	margin: 0 auto;
+	display: flex;
+}
+item {
+	display: block;
+	position: relative;
+	top: 72px;
+}
+html {
+	background: #051521;
+}
+body {
+	font-family: "Kanit", sans-serif;
+	width: 100%;
+	margin: 0;
+	padding: 0;
+	background: #051521;
+	font-size: 13pt;
+	max-width: 1440px;
+	margin: 0 auto;
+}
+button {
+	background: #051521;
+	border-radius: 8px;
+	color: #fff;
+	font-family: "Kanit", sans-serif;
+	font-size: 14pt;
+}
+.container {
+	margin: 30px auto;
+}
+article { 
+	display: block;
+	width: 90vw;
+	max-width: 1440px;
+	margin: 0 auto 30px;
+	padding: 16px 14px;
+	border-radius: 12px;
+	background: #fff;
+	transition-duration: 0.23s;
+}
+article article { 
+	padding: 16px 14px;
+	width: 85%;
+	max-width: 1440px;
+}
+article pre {
+	display: block;
+	width: 100%;
+	overflow-x: auto;
+	max-width: 1440px;
+}
+article img { 
+	width: auto;
+	height: auto;
+	max-width: 80%;
+	max-height: 80vh;
+	margin: 0 20px 20px 0;
+}
+articletitle {
+	display: block;
+	padding: 0 0 18px;
+	color: #fff;
+	font-weight: 200;
+	font-size:27pt;
+	line-height:24pt;
+	font-family: Kanit;
+}
+articlesource {
+	display: block;
+	font-weight: 700;
+	font-size:12pt;
+	margin: 0 0 0 0;
+	text-transform: uppercase;
+	color: #00adef;
+}
+resume, div, p, a {
+	font-family: Kanit;
+	color: #051521;
+}
+article.GOOD { 
+	box-shadow: #000 0 0 42px, #051521 0 0 17px, #051521 0 0 17px;
+	background: linear-gradient(123deg, lightyellow 50%,#EC7B6F) fixed;
+}
+article.BAD { 
+	display: none;
+}
+article.BAD p {
+	display: none;
+}
+article.BAD h3 { 
+	color: #051521;
+}
+.BAD articlesource {
+	color: #cc0000;
+}
+.GOOD articlesource {
+	color: #00cc00;
+}
+.more { 
+	margin: 22px 5vw;
+	border-radius: 8px;
+	background: #fff;
+	color: #051521;
+}
+buttons {
+	display: block;
+	background: #051521;
+	box-shadow: #051521 0 0 17px;
+	border-radius: 0 0 12px 12px;
+	position: sticky;
+	top: 72px;
+	left: 0;
+	right: 0;
+	z-index: 17;
+	width: auto;
+	padding: 12px 15px 0;
+	transition-duration: 0.23s;
+}
+buttons.BAD {
+	filter:opacity(0.3) blur(3px);
+	color: rgb(238, 178, 178);
+}
+
+buttonsblock {
+	display: flex;
+	float: right;
+}
+button.good {
+	border: 0;
+	background: #0a0;
+	color: #fff;
+	font-size: 26px;
+	margin-right: 8px;
+	display: flex;
+}
+button.bad {
+	border: 0;
+	background: #c00;
+	color: #fff;
+	font-size: 13px;
+	display: flex;
+}
+buttons.GOOD button.good { 
+	display: none;
+}
+buttons.GOOD button.bad { 
+	opacity: 0.3;
+	display: none;
+}
+buttons.BAD button.bad { 
+	display: none;
+}
+
+article:hover, buttons:hover { 
+	filter:none;
+}
+
+@media (min-width:760px) {
+	item {
+		display: block;
+	}
+	article { 
+		padding: 40px 50px;
+		width: auto;
+	}
+}
+	</style>
+</head>
+<body>
+	<input type="text" id="searchInput" name="q" onkeyup="liveSearch()" placeholder="Search for articles...">
+	<journal><img src="https://l3dlp.net/assets/images/image05.jpg" alt="GOPH.RE" /></journal>
+	<div id="articlesContainer">{{ $prevDate := "" }}
+		{{ range .articles }}
+			{{ $currentDate := .Date.Format "2006-01-02" }}
+			{{ if ne $prevDate $currentDate }}
+				<h2 class="when">{{ $currentDate }}</h2>
+			{{ end }}
+			{{ $prevDate = $currentDate }}
+			<article{{ if .Vote }} class="{{ .Vote }}"{{ end }}>
+				<h3>Source : {{ .Source.Name }}</h3>
+				<h1>{{ .Name }}</h1>
+				<div>{{ .Resume | safe }}</div>
+				<a href="{{ .ID }}">Lire l'article</a>
+				<hr>
+				{{ if .Vote }}
+					<p>Voted: {{ .Vote }}</p>
+					<button href="{{ .ID }}" onclick="vote('{{ .ID }}', 'GOOD')">GOOD</button>
+					<button href="{{ .ID }}" onclick="vote('{{ .ID }}', 'BAD')">BAD</button>
+				{{ else }}
+					<button href="{{ .ID }}" onclick="vote('{{ .ID }}', 'GOOD')">GOOD</button>
+					<button href="{{ .ID }}" onclick="vote('{{ .ID }}', 'BAD')">BAD</button>
+				{{ end }}
+			</article>
+		{{ end }}
+	</div>
+	<button class="more" onclick="loadMoreArticles()">Load next</button>
+<script>
+
+let currentPage = 0;
+let currentDate = "{{ $prevDate }}";
+const pageSize = 30;
+const path = "{{ .path }}"
+const container = document.getElementById('articlesContainer');
+function sanitizeHTML(html) {
+	const parser = new DOMParser();
+	const doc = parser.parseFromString(html, 'text/html');
+	return doc.body.textContent || '';
+}
+
+let oldFilter = ""
+
+async function liveSearch() {
+    const urlParams = new URLSearchParams(window.location.search);
+	const input = document.getElementById('searchInput');
+	let filter = input.value.toLowerCase();
+
+	if (filter == "" && filter==oldFilter) {
+		if (urlParams.get('q')!="") {
+			input.value = urlParams.get('q');
+			filter = urlParams.get('q');
+		}
+	}
+
+	oldFilter = filter
+	
+    const url = new URL(window.location);
+	if (filter!="" && filter != null) {
+		url.searchParams.set('q', filter);
+    	window.history.pushState(null, '', url);
+
+		filter = encodeURIComponent(filter)
+		container.innerHTML = "";
+
+		const res = await fetch(`/search?q=${filter}`);
+    	const articles = await res.json();
+
+		articles.forEach(article => {
+
+			let sourceName = article.source ? article.source.name : 'N/A';
+			let dateName = article.date ? article.date.substring(0,10) : '';
+
+			if (currentDate!=dateName && dateName!="") {
+				const h2Div = document.createElement('when');
+				h2Div.innerHTML = dateName;
+				container.appendChild(h2Div);
+			}
+			currentDate=dateName;
+
+			let articleDiv = document.createElement('article');
+			articleDiv.id=article.id;
+			let existingVote = localStorage.getItem(`vote_${article.id}`);
+			if (existingVote) {
+				articleDiv.className = existingVote;
+			}
+
+			let voteDiv = document.createElement('buttons');
+			voteDiv.id="buttons"+article.id;
+			if (existingVote) {
+				voteDiv.className = existingVote;
+			}
+
+			voteDiv.innerHTML = `
+			<buttonsblock>
+				<button class="good" href="'${article.id}'" onclick="vote('${article.id}', 'GOOD')">KEEP</button>
+				<button class="bad" href="'${article.id}'" onclick="vote('${article.id}', 'BAD')">REALLY NOT<br>INTERESTED</button>
+			</buttonsblock>
+			<articlesource>${sourceName}</articlesource>
+			<articletitle>${article.name}</articletitle>
+			`;
+			container.appendChild(voteDiv);
+
+			if (existingVote) {
+				// voteButtons = `<p>Voted: ${article.vote}</p>`
+			}
+
+			articleDiv.innerHTML = `
+			<resume>${article.resume}</resume>
+			<br>
+			<a href="${article.url}" target="_blank">READ THE SOURCE</a>
+			`;
+			container.appendChild(articleDiv);
+		});
+	} else {
+		url.searchParams.delete('q', filter);
+    	window.history.pushState(null, '', url);
+		container.innerHTML = "";
+		loadMoreArticles();
+	}
+}
+
+async function loadMoreArticles() {
+	currentPage += 1;
+	const res = await fetch(`/feed?path=${path}&page=${currentPage}&size=30`);
+	const articles = await res.json();
+
+	articles.forEach(article => {
+
+		let sourceName = article.source ? article.source.name : 'N/A';
+		let dateName = article.date ? article.date.substring(0,10) : '';
+
+		if (currentDate!=dateName && dateName!="") {
+			const h2Div = document.createElement('when');
+			h2Div.innerHTML = dateName;
+			container.appendChild(h2Div);
+		}
+		currentDate=dateName;
+
+		let itemDiv = document.createElement('item');
+
+		let articleDiv = document.createElement('article');
+		articleDiv.id=article.id;
+		let existingVote = localStorage.getItem(`vote_${article.id}`);
+		if (existingVote) {
+			articleDiv.className = existingVote;
+		}
+
+		let voteDiv = document.createElement('buttons');
+		voteDiv.id="buttons"+article.id;
+		if (existingVote) {
+			voteDiv.className = existingVote;
+		}
+
+		voteDiv.innerHTML = `
+		<buttonsblock>
+			<button class="good" href="'${article.id}'" onclick="vote('${article.id}', 'GOOD')">KEEP</button>
+			<button class="bad" href="'${article.id}'" onclick="vote('${article.id}', 'BAD')">REALLY NOT<br>INTERESTED</button>
+		</buttonsblock>
+		<articlesource>${sourceName}</articlesource>
+		<articletitle>${article.name}</articletitle>
+		`;
+		itemDiv.appendChild(voteDiv);
+
+		if (existingVote) {
+			// voteButtons = `<p>Voted: ${article.vote}</p>`
+		}
+
+		articleDiv.innerHTML = `
+		<resume>${article.resume}</resume>
+		<br>
+		<a href="${article.url}" target="_blank">READ THE SOURCE</a>
+		`;
+		itemDiv.appendChild(articleDiv);
+
+		container.appendChild(itemDiv);
+	});
+}
+
+
+/*
+	async function vote(articleUrl, note) {
+		await fetch(`/vote?url=${encodeURIComponent(articleUrl)}&note=${note}`);
+	}
+*/
+
+async function vote(id, voteValue) {
+
+	// Find the corresponding article div by searching for a link with the matching URL
+	const articleDiv = document.getElementById(id);
+	if (articleDiv) {
+		localStorage.setItem(`vote_${id}`, voteValue);
+		// Add the vote value as a class to the article div
+		articleDiv.classList.remove("GOOD");
+		articleDiv.classList.remove("BAD");
+		articleDiv.classList.add(voteValue);
+
+		const voteDiv = document.getElementById("buttons"+id);
+		if (voteDiv) {
+			voteDiv.classList.remove("GOOD");
+			voteDiv.classList.remove("BAD");
+			voteDiv.classList.add(voteValue);
+
+			// Remove the vote buttons and display the vote value
+			const buttons = voteDiv.querySelectorAll('button');
+			buttons.forEach(button => button.remove());
+			const voteParagraph = document.createElement('p');
+			voteParagraph.textContent = `Voted: ${voteValue}`;
+			articleDiv.appendChild(voteParagraph);
+		}
+	}
+}
+
+function handleScroll() {
+	const scrollTop = (document.documentElement && document.documentElement.scrollTop) || document.body.scrollTop;
+	const scrollHeight = (document.documentElement && document.documentElement.scrollHeight) || document.body.scrollHeight;
+	const clientHeight = document.documentElement.clientHeight || window.innerHeight;
+
+	const articles = document.querySelectorAll('article');
+	articles.forEach(article => {
+		const rect = article.getBoundingClientRect();
+		if (rect.bottom < 0) {
+			const badButton = article.querySelector('button:last-child');
+			if (badButton) {
+				// badButton.click();
+			}
+		}
+	});
+
+	if (scrollTop + clientHeight >= scrollHeight - 100) {
+		loadMoreArticles();
+		window.removeEventListener('scroll', handleScroll);
+	}
+}
+
+function debounce(func, wait) {
+	let timeout;
+	return function (...args) {
+		const context = this;
+		clearTimeout(timeout);
+		timeout = setTimeout(() => func.apply(context, args), wait);
+	};
+}
+
+window.addEventListener('scroll', debounce(handleScroll, 200));
+
+</script>
+</body>
+</html>
