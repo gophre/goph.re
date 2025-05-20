@@ -502,5 +502,83 @@
     "value": 1,
     "user_id": "60765",
     "timestamp": "2025-04-28T10:34:17.623158323+02:00"
+  },
+  {
+    "article_id": "628c6cecc6060246b29aff7b8c265a3d",
+    "value": 1,
+    "user_id": "60765",
+    "timestamp": "2025-05-20T12:50:17.490429318+02:00"
+  },
+  {
+    "article_id": "122ef85c0bee93653f3f0c06010b70a2",
+    "value": 1,
+    "user_id": "60765",
+    "timestamp": "2025-05-20T12:50:28.869797218+02:00"
+  },
+  {
+    "article_id": "a4584c272607287424a25498e51e99fc",
+    "value": 1,
+    "user_id": "60765",
+    "timestamp": "2025-05-20T12:50:32.694099724+02:00"
+  },
+  {
+    "article_id": "1e44f2f69a0019911e482fc3e732536a",
+    "value": 1,
+    "user_id": "60765",
+    "timestamp": "2025-05-20T12:50:39.134353842+02:00"
+  },
+  {
+    "article_id": "8c7ed51c1a9e15102923bb3839bacb7e",
+    "value": 1,
+    "user_id": "60765",
+    "timestamp": "2025-05-20T12:50:41.309432944+02:00"
+  },
+  {
+    "article_id": "d2e00e92825055ba2fd23959f06f575c",
+    "value": 1,
+    "user_id": "60765",
+    "timestamp": "2025-05-20T12:50:54.314925718+02:00"
+  },
+  {
+    "article_id": "c77ba96f59bd17c3937216f9675be49f",
+    "value": 1,
+    "user_id": "60765",
+    "timestamp": "2025-05-20T12:51:10.745265154+02:00"
+  },
+  {
+    "article_id": "9b0bca4d8d6f026a02ea8dd49637b50a",
+    "value": 1,
+    "user_id": "60765",
+    "timestamp": "2025-05-20T12:51:25.751517418+02:00"
+  },
+  {
+    "article_id": "c10f0445343ff792dfdaef7bd934d8ac",
+    "value": 1,
+    "user_id": "60765",
+    "timestamp": "2025-05-20T12:51:40.486536741+02:00"
+  },
+  {
+    "article_id": "6a43320a1f3d77c3c6e4e213d2e0596f",
+    "value": 1,
+    "user_id": "60765",
+    "timestamp": "2025-05-20T12:52:35.102627059+02:00"
+  },
+  {
+    "article_id": "82f4841883a632866361bbd6e8237a00",
+    "value": 1,
+    "user_id": "60765",
+    "timestamp": "2025-05-20T12:52:43.716037141+02:00"
+  },
+  {
+    "article_id": "bebc310d1fd9c1bac7425ee2382bb344",
+    "value": 1,
+    "user_id": "60765",
+    "timestamp": "2025-05-20T12:52:47.227153322+02:00"
+  },
+  {
+    "article_id": "2f2a83ab91e61edb3c02aa58f62315ce",
+    "value": 1,
+    "user_id": "60765",
+    "timestamp": "2025-05-20T12:53:00.667792667+02:00"
   }
 ]
