@@ -39,7 +39,7 @@ func SetupAuth(router *gin.Engine) {
 			q := c.Request.URL.Query()
 			q.Set("provider", "github")
 			c.Request.URL.RawQuery = q.Encode()
-			
+
 			// Récupère l'utilisateur après authentification GitHub
 			user, err := gothic.CompleteUserAuth(c.Writer, c.Request)
 			if err != nil {
@@ -82,7 +82,7 @@ func SetupAuth(router *gin.Engine) {
 func GetCurrentUser(c *gin.Context) (data.User, bool) {
 	session := sessions.Default(c)
 	userStr := session.Get("user")
-	
+
 	if userStr == nil {
 		return data.User{}, false
 	}
@@ -112,7 +112,7 @@ func RequireAuth() gin.HandlerFunc {
 // createUserPreferencesFile crée un fichier de préférences vide pour un nouvel utilisateur
 func createUserPreferencesFile(userID string) error {
 	userFilePath := filepath.Join(env.USERS, userID+".json")
-	
+
 	// Vérifie si le fichier existe déjà
 	if _, err := os.Stat(userFilePath); os.IsNotExist(err) {
 		// Crée un fichier vide avec des préférences par défaut
@@ -120,15 +120,15 @@ func createUserPreferencesFile(userID string) error {
 			"user_id": userID,
 			"votes":   map[string]string{}, // Equivalent au localStorage
 		}
-		
+
 		data, err := json.MarshalIndent(preferences, "", "  ")
 		if err != nil {
 			return err
 		}
-		
+
 		return os.WriteFile(userFilePath, data, 0644)
 	}
-	
+
 	return nil
 }
 
@@ -147,8 +147,9 @@ func RequireAdmin() gin.HandlerFunc {
 		if user.Name == "l3dlp" {
 			c.Next()
 		} else {
+			c.Raw(200, "Unauthorized", nil)
 			// Not an admin, redirect to home
-			c.Redirect(http.StatusTemporaryRedirect, "/")
+			// c.Redirect(http.StatusTemporaryRedirect, "/")
 			c.Abort()
 		}
 	}
