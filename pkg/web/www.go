@@ -5,6 +5,7 @@ import (
 	"gophre/pkg/rss"
 	"html/template"
 	"net/http"
+	"os"
 	"strconv"
 	"time"
 
@@ -54,6 +55,15 @@ func Serve(port ...int) {
 	
 	// Setup auth routes and middleware
 	SetupAuth(r)
+
+	// Admin routes
+	adminGroup := r.Group("/admin")
+	adminGroup.Use(RequireAuth())      // Apply RequireAuth middleware
+	adminGroup.Use(RequireAdmin()) // Apply RequireAdmin middleware (placeholder)
+	{
+		adminGroup.GET("/rss-feeds", GetRssFeedsEditorHandler)
+		adminGroup.POST("/rss-feeds", PostRssFeedsEditorHandler)
+	}
 	
 	r.LoadHTMLGlob(env.PATH + "assets/html/*")
 	r.Static("/css", env.PATH+"assets/css")
@@ -149,4 +159,34 @@ func Topic(c *gin.Context) {
 		"path": path,
 		"user": user,
 	})
+}
+
+// GetRssFeedsEditorHandler handles GET requests to /admin/rss-feeds
+func GetRssFeedsEditorHandler(c *gin.Context) {
+	filePath := env.PATH + "rss/rss_feeds.json"
+	fileData, err := os.ReadFile(filePath)
+	if err != nil {
+		c.String(http.StatusInternalServerError, "Error reading RSS feeds file")
+		return
+	}
+
+	user, _ := GetCurrentUser(c)
+	c.HTML(http.StatusOK, "admin-rss-editor.html", gin.H{
+		"FeedsContent": string(fileData),
+		"user":         user,
+	})
+}
+
+// PostRssFeedsEditorHandler handles POST requests to /admin/rss-feeds
+func PostRssFeedsEditorHandler(c *gin.Context) {
+	feedsContent := c.PostForm("feeds_content")
+	filePath := env.PATH + "rss/rss_feeds.json"
+
+	err := os.WriteFile(filePath, []byte(feedsContent), 0644)
+	if err != nil {
+		c.String(http.StatusInternalServerError, "Error saving RSS feeds file")
+		return
+	}
+
+	c.Redirect(http.StatusFound, "/admin/rss-feeds")
 }

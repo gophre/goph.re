@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RSS Feed Editor</title>
+    <style>
+        body { font-family: sans-serif; margin: 20px; }
+        textarea { display: block; margin-bottom: 10px; }
+        .user-info { margin-bottom: 20px; }
+        .user-info img { vertical-align: middle; margin-left: 10px; border-radius: 50%; }
+    </style>
+</head>
+<body>
+    <h1>RSS Feed Editor</h1>
+
+    <div class="user-info">
+        {{ if .user }}
+            {{ if .user.Name }}
+                Logged in as: {{ .user.Name }}
+                {{ if .user.AvatarURL }}
+                    <img src="{{ .user.AvatarURL }}" alt="{{ .user.Name }}'s avatar" width="50">
+                {{ end }}
+            {{ else }}
+                <!-- User object exists but Name is empty -->
+            {{ end }}
+        {{ else }}
+            <!-- No user logged in -->
+        {{ end }}
+    </div>
+
+    <form action="/admin/rss-feeds" method="POST">
+        <div>
+            <label for="feeds_content">Feeds JSON Content:</label>
+            <textarea id="feeds_content" name="feeds_content" rows="25" cols="80">{{ .FeedsContent }}</textarea>
+        </div>
+        <div>
+            <button type="submit">Save Changes</button>
+        </div>
+    </form>
+
+    <p><a href="/">Back to Main Page</a></p>
+
+</body>
+</html>
