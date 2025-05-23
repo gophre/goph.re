@@ -1,45 +1,93 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RSS Feed Editor</title>
-    <style>
-        body { font-family: sans-serif; margin: 20px; }
-        textarea { display: block; margin-bottom: 10px; }
-        .user-info { margin-bottom: 20px; }
-        .user-info img { vertical-align: middle; margin-left: 10px; border-radius: 50%; }
-    </style>
+  <meta charset="UTF-8">
+  <title>RSS Feed Editor</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body { font-family: monospace, sans-serif; margin: 20px; }
+    #editor_holder { margin-bottom: 20px; }
+    .user-info { margin-bottom: 20px; }
+    #item { margin-left: 120px; }
+  </style>
+  <script src="https://cdn.jsdelivr.net/npm/@json-editor/json-editor@2.10.0/dist/jsoneditor.min.js"></script>
 </head>
 <body>
-    <h1>RSS Feed Editor</h1>
+  <h1><a href="/">Goph.re</a> RSS Feed</h1>
 
-    <div class="user-info">
-        {{ if .user }}
-            {{ if .user.Name }}
-                Logged in as: {{ .user.Name }}
-                {{ if .user.AvatarURL }}
-                    <img src="{{ .user.AvatarURL }}" alt="{{ .user.Name }}'s avatar" width="50">
-                {{ end }}
-            {{ else }}
-                <!-- User object exists but Name is empty -->
-            {{ end }}
-        {{ else }}
-            <!-- No user logged in -->
+  <div class="user-info">
+    {{ if .user }}
+        {{ if .user.Name }}
+            Logged in as <b>{{ .user.Name }}</b><hr/>
         {{ end }}
-    </div>
+    {{ end }}
+  </div>
 
-    <form action="/admin/rss-feeds" method="POST">
-        <div>
-            <label for="feeds_content">Feeds JSON Content:</label>
-            <textarea id="feeds_content" name="feeds_content" rows="25" cols="80">{{ .FeedsContent }}</textarea>
-        </div>
-        <div>
-            <button type="submit">Save Changes</button>
-        </div>
-    </form>
+  <form action="/admin/rss" method="POST" onsubmit="syncEditor()">
+    <div id="editor_holder"></div>
+    <textarea id="feeds_content" name="feeds_content" style="display:none;"></textarea>
+    <button type="submit">Save Changes</button>
+  </form>
 
-    <p><a href="/">Back to Main Page</a></p>
+  <p><a href="/">Back to Main Page</a></p>
 
+  <script id="feeds_json" type="application/json">
+    {{ .FeedsContent | tojson }}
+  </script>
+  
+  <script>
+    const schema = {
+        type: "array",
+        title: "RSS Feeds",
+        format: "tabs",
+        options: {
+          headerTemplate: "{" + "{" + "name" + "}" + "}"
+        },
+        items: {
+          type: "object",
+          required: ["path", "name", "url"],
+          properties: {
+            path: {
+              type: "string",
+              enum: [
+                "golang", "forums", "blogs", "tools", "podcasts", "examples", "courses"
+              ],
+              options: {
+                enum_titles: [
+                  "Golang", "Forums", "Blogs", "Tools", "Podcasts", "Examples", "Courses"
+                ]
+              }
+            },
+            name: {
+              type: "string",
+              title: "Feed Name"
+            },
+            url: {
+              type: "string",
+              format: "uri",
+              title: "Feed URL"
+            }
+          }
+        }
+    };      
+
+    const startValue = JSON.parse(document.getElementById("feeds_json").textContent);
+
+    const editor = new JSONEditor(document.getElementById("editor_holder"), {
+      schema: schema,
+      startval: startValue,
+      theme: 'html',
+      disable_edit_json: true,
+      disable_properties: true,
+      required_by_default: true,
+      no_additional_properties: true,
+      show_errors: "interaction"
+    });
+
+    function syncEditor() {
+      const value = editor.getValue();
+      document.getElementById("feeds_content").value = JSON.stringify(value, null, 2);
+    }
+  </script>
 </body>
 </html>

@@ -1,6 +1,7 @@
 package web
 
 import (
+	"encoding/json"
 	"gophre/env"
 	"gophre/pkg/rss"
 	"html/template"
@@ -21,6 +22,12 @@ import (
 // Rate limiter
 // Routes
 
+type RSSFeed struct {
+	Path string `json:"path"`
+	Name string `json:"name"`
+	URL  string `json:"url"`
+}
+
 func Serve(port ...int) {
 
 	// Server Port
@@ -34,6 +41,10 @@ func Serve(port ...int) {
 		"safe": func(s string) template.HTML {
 			return template.HTML(s)
 		},
+		"tojson": func(v interface{}) template.JS {
+			a, _ := json.Marshal(v)
+			return template.JS(a) // on injecte direct, donc pas d'échappement HTML
+		},
 	}
 
 	// Rate limiter
@@ -45,26 +56,26 @@ func Serve(port ...int) {
 	r.SetTrustedProxies([]string{"169.155.237.69"})
 	r.SetFuncMap(customFuncs)
 	r.Use(RateLimiterMiddleware(limiter))
-	
+
 	// Set up sessions
 	store := cookie.NewStore([]byte("secret-session-key")) // Change this to a secure key
 	r.Use(sessions.Sessions("gophre-session", store))
-	
+
 	// Configure Goth
 	gothic.Store = store
-	
+
 	// Setup auth routes and middleware
 	SetupAuth(r)
 
 	// Admin routes
 	adminGroup := r.Group("/admin")
-	adminGroup.Use(RequireAuth())      // Apply RequireAuth middleware
+	adminGroup.Use(RequireAuth())  // Apply RequireAuth middleware
 	adminGroup.Use(RequireAdmin()) // Apply RequireAdmin middleware (placeholder)
 	{
-		adminGroup.GET("/rss-feeds", GetRssFeedsEditorHandler)
-		adminGroup.POST("/rss-feeds", PostRssFeedsEditorHandler)
+		adminGroup.GET("/rss", GetRssFeedsEditorHandler)
+		adminGroup.POST("/rss", PostRssFeedsEditorHandler)
 	}
-	
+
 	r.LoadHTMLGlob(env.PATH + "assets/html/*")
 	r.Static("/css", env.PATH+"assets/css")
 	r.Static("/gfx", env.PATH+"assets/gfx")
@@ -77,21 +88,21 @@ func Serve(port ...int) {
 			"user": user,
 		})
 	})
-	
+
 	r.GET("/all", func(c *gin.Context) {
 		user, _ := GetCurrentUser(c)
 		c.HTML(http.StatusOK, "wall.html", gin.H{
-			"all": true,
+			"all":  true,
 			"user": user,
 		})
 	})
-	
+
 	r.GET("/me", UserBookmarks)
-	
+
 	r.GET("/top", func(c *gin.Context) {
 		user, _ := GetCurrentUser(c)
 		c.HTML(http.StatusOK, "wall.html", gin.H{
-			"top": true,
+			"top":  true,
 			"user": user,
 		})
 	})
@@ -104,7 +115,7 @@ func Serve(port ...int) {
 		rss.UpdateVoteByURL(url, note)
 		c.JSON(http.StatusOK, gin.H{"success": true})
 	})
-	
+
 	// New vote endpoint using ID
 	r.POST("/vote/:id/:vote", Vote)
 
@@ -121,7 +132,7 @@ func Serve(port ...int) {
 		if err != nil || size < 1 || size > 100 {
 			size = 30
 		}
-		
+
 		// Get all articles but limit the batch size to avoid loading everything
 		articles := rss.Feed("", "1", "1000")
 		searchResults := rss.Search(q, articles, page, size)
@@ -161,7 +172,7 @@ func Topic(c *gin.Context) {
 	})
 }
 
-// GetRssFeedsEditorHandler handles GET requests to /admin/rss-feeds
+// GetRssFeedsEditorHandler handles GET requests to /admin/rss
 func GetRssFeedsEditorHandler(c *gin.Context) {
 	filePath := env.PATH + "rss/rss_feeds.json"
 	fileData, err := os.ReadFile(filePath)
@@ -170,14 +181,17 @@ func GetRssFeedsEditorHandler(c *gin.Context) {
 		return
 	}
 
+	var feeds []RSSFeed
+	json.Unmarshal(fileData, &feeds)
+
 	user, _ := GetCurrentUser(c)
 	c.HTML(http.StatusOK, "admin-rss-editor.html", gin.H{
-		"FeedsContent": string(fileData),
+		"FeedsContent": feeds,
 		"user":         user,
 	})
 }
 
-// PostRssFeedsEditorHandler handles POST requests to /admin/rss-feeds
+// PostRssFeedsEditorHandler handles POST requests to /admin/rss
 func PostRssFeedsEditorHandler(c *gin.Context) {
 	feedsContent := c.PostForm("feeds_content")
 	filePath := env.PATH + "rss/rss_feeds.json"
@@ -188,5 +202,5 @@ func PostRssFeedsEditorHandler(c *gin.Context) {
 		return
 	}
 
-	c.Redirect(http.StatusFound, "/admin/rss-feeds")
+	c.Redirect(http.StatusFound, "/admin/rss")
 }

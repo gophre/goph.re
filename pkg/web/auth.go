@@ -52,6 +52,7 @@ func SetupAuth(router *gin.Engine) {
 			userData := data.User{
 				ID:        user.UserID,
 				Name:      user.Name,
+				NickName:  user.NickName,
 				Email:     user.Email,
 				AvatarURL: user.AvatarURL,
 				Provider:  user.Provider,
@@ -144,10 +145,10 @@ func RequireAdmin() gin.HandlerFunc {
 		}
 
 		// Check if the user is the admin "l3dlp"
-		if user.Name == "l3dlp" {
+		if user.ID == "60765" {
 			c.Next()
 		} else {
-			c.Raw(200, "Unauthorized", nil)
+			c.String(http.StatusOK, "%s", user.ID)
 			// Not an admin, redirect to home
 			// c.Redirect(http.StatusTemporaryRedirect, "/")
 			c.Abort()

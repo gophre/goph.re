@@ -4,7 +4,7 @@
 		"name": "GO.DEV",
 		"url": "https://go.dev/blog/feed.atom"
 	},
-	{
+{
 		"path": "forums",
 		"name": "Reddit",
 		"url": "https://www.reddit.com/r/golang.rss"
@@ -90,4 +90,3 @@
 		"url": "https://sdet.us/feed/"
 	}
 ]
-
