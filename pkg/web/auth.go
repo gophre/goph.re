@@ -131,3 +131,25 @@ func createUserPreferencesFile(userID string) error {
 	
 	return nil
 }
+
+// RequireAdmin middleware to check if the user is an admin
+func RequireAdmin() gin.HandlerFunc {
+	return func(c *gin.Context) {
+		user, isAuthenticated := GetCurrentUser(c)
+
+		if !isAuthenticated {
+			c.Redirect(http.StatusTemporaryRedirect, "/")
+			c.Abort()
+			return
+		}
+
+		// Check if the user is the admin "l3dlp"
+		if user.Name == "l3dlp" {
+			c.Next()
+		} else {
+			// Not an admin, redirect to home
+			c.Redirect(http.StatusTemporaryRedirect, "/")
+			c.Abort()
+		}
+	}
+}
