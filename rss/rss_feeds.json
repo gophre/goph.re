@@ -88,15 +88,5 @@
     "path": "blogs",
     "name": "SDET",
     "url": "https://sdet.us/feed/"
-  },
-  {
-    "path": "blogs",
-    "name": "Applied Go",
-    "url": "https://appliedgo.net/index.xml"
-  },
-  {
-    "path": "podcasts",
-    "name": "Go Time",
-    "url": "https://changelog.com/gotime/feed"
   }
 ]
