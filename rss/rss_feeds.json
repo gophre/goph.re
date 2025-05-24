@@ -1,92 +1,102 @@
 [
-	{
-		"path": "golang",
-		"name": "GO.DEV",
-		"url": "https://go.dev/blog/feed.atom"
-	},
-{
-		"path": "forums",
-		"name": "Reddit",
-		"url": "https://www.reddit.com/r/golang.rss"
-	},
-	{
-		"path": "forums",
-		"name": "Golang Bridge",
-		"url": "https://forum.golangbridge.org/posts.rss"
-	},
-	{
-		"path": "golang",
-		"name": "Golang Weekly",
-		"url": "https://cprss.s3.amazonaws.com/golangweekly.com.xml"
-	},
-	{
-		"path": "blogs",
-		"name": "Applied Go",
-		"url": "https://appliedgo.net/index.xml"
-	},
-	{
-		"path": "blogs",
-		"name": "A journey with Go",
-		"url": "https://medium.com/feed/a-journey-with-go"
-	},
-	{
-		"path": "tools",
-		"name": "GoLand",
-		"url": "https://blog.jetbrains.com/go/feed/"
-	},
-	{
-		"path": "podcasts",
-		"name": "Go Time",
-		"url": "https://changelog.com/gotime/feed"
-	},
-	{
-		"path": "blogs",
-		"name": "BOOT.DEV",
-		"url": "https://blog.boot.dev/index.xml"
-	},
-	{
-		"path": "examples",
-		"name": "The Coding Gopher",
-		"url": "https://www.youtube.com/feeds/videos.xml?channel_id=UC-mTIBh__DzAqW495JHXy5A"
-	},
-	{
-		"path": "courses",
-		"name": "Ardan Labs",
-		"url": "https://www.ardanlabs.com/blog/index.xml"
-	},
-	{
-		"path": "blogs",
-		"name": "Goland.ch",
-		"url": "https://golang.ch/feed/"
-	},
-	{
-		"path": "examples",
-		"name": "Go Samples",
-		"url": "https://gosamples.dev/index.xml"
-	},
-	{
-		"path": "courses",
-		"name": "Golang Bot",
-		"url": "https://golangbot.com/index.xml"
-	},
-	{
-		"path": "blogs",
-		"name": "Dave Cheney",
-		"url": "https://dave.cheney.net/feed"
-	},
-	{
-		"path": "blogs",
-		"name": "Jajal Doang",
-		"url": "https://www.jajaldoang.com/index.xml"
-	},
-	{
-		"path": "podcasts",
-		"name": "Golang Youtube Channel",
-		"url": "https://www.youtube.com/feeds/videos.xml?channel_id=UCO3LEtymiLrgvpb59cNsb8A"
-	},
-	{
-		"path": "blogs",
-		"name": "SDET",
-		"url": "https://sdet.us/feed/"
-	}
+  {
+    "path": "golang",
+    "name": "GO.DEV",
+    "url": "https://go.dev/blog/feed.atom"
+  },
+  {
+    "path": "forums",
+    "name": "Reddit",
+    "url": "https://www.reddit.com/r/golang.rss"
+  },
+  {
+    "path": "forums",
+    "name": "Golang Bridge",
+    "url": "https://forum.golangbridge.org/posts.rss"
+  },
+  {
+    "path": "golang",
+    "name": "Golang Weekly",
+    "url": "https://cprss.s3.amazonaws.com/golangweekly.com.xml"
+  },
+  {
+    "path": "blogs",
+    "name": "Applied Go",
+    "url": "https://appliedgo.net/index.xml"
+  },
+  {
+    "path": "blogs",
+    "name": "A journey with Go",
+    "url": "https://medium.com/feed/a-journey-with-go"
+  },
+  {
+    "path": "tools",
+    "name": "GoLand",
+    "url": "https://blog.jetbrains.com/go/feed/"
+  },
+  {
+    "path": "podcasts",
+    "name": "Go Time",
+    "url": "https://changelog.com/gotime/feed"
+  },
+  {
+    "path": "blogs",
+    "name": "BOOT.DEV",
+    "url": "https://blog.boot.dev/index.xml"
+  },
+  {
+    "path": "examples",
+    "name": "The Coding Gopher",
+    "url": "https://www.youtube.com/feeds/videos.xml?channel_id=UC-mTIBh__DzAqW495JHXy5A"
+  },
+  {
+    "path": "courses",
+    "name": "Ardan Labs",
+    "url": "https://www.ardanlabs.com/blog/index.xml"
+  },
+  {
+    "path": "blogs",
+    "name": "Goland.ch",
+    "url": "https://golang.ch/feed/"
+  },
+  {
+    "path": "examples",
+    "name": "Go Samples",
+    "url": "https://gosamples.dev/index.xml"
+  },
+  {
+    "path": "courses",
+    "name": "Golang Bot",
+    "url": "https://golangbot.com/index.xml"
+  },
+  {
+    "path": "blogs",
+    "name": "Dave Cheney",
+    "url": "https://dave.cheney.net/feed"
+  },
+  {
+    "path": "blogs",
+    "name": "Jajal Doang",
+    "url": "https://www.jajaldoang.com/index.xml"
+  },
+  {
+    "path": "podcasts",
+    "name": "Golang Youtube Channel",
+    "url": "https://www.youtube.com/feeds/videos.xml?channel_id=UCO3LEtymiLrgvpb59cNsb8A"
+  },
+  {
+    "path": "blogs",
+    "name": "SDET",
+    "url": "https://sdet.us/feed/"
+  },
+  {
+    "path": "blogs",
+    "name": "Applied Go",
+    "url": "https://appliedgo.net/index.xml"
+  },
+  {
+    "path": "podcasts",
+    "name": "Go Time",
+    "url": "https://changelog.com/gotime/feed"
+  }
 ]
