@@ -586,5 +586,41 @@
     "value": 1,
     "user_id": "60765",
     "timestamp": "2025-08-05T23:16:56.622412564+02:00"
+  },
+  {
+    "article_id": "4954cb9e28687f6c3fc125f6a8c435ef",
+    "value": 1,
+    "user_id": "60765",
+    "timestamp": "2025-08-05T23:50:05.653482666+02:00"
+  },
+  {
+    "article_id": "3ff6e308c0e7048b7156e7284804b2c7",
+    "value": 1,
+    "user_id": "60765",
+    "timestamp": "2025-08-05T23:50:24.905589378+02:00"
+  },
+  {
+    "article_id": "643eb41effb85f5cebbb6ab05bc3a702",
+    "value": 1,
+    "user_id": "60765",
+    "timestamp": "2025-08-05T23:50:27.129402453+02:00"
+  },
+  {
+    "article_id": "14e261ac3c5b6b6d4452bdd52544f182",
+    "value": 1,
+    "user_id": "60765",
+    "timestamp": "2025-08-05T23:50:40.933865966+02:00"
+  },
+  {
+    "article_id": "cb8968ab8a00cafccf35e1123402e281",
+    "value": 1,
+    "user_id": "60765",
+    "timestamp": "2025-08-05T23:51:25.758396928+02:00"
+  },
+  {
+    "article_id": "93c2954b6b4f9d24c0c079bcc1a58762",
+    "value": 1,
+    "user_id": "60765",
+    "timestamp": "2025-08-05T23:51:46.859132142+02:00"
   }
 ]
