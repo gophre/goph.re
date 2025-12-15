@@ -5,6 +5,11 @@
     "url": "https://go.dev/blog/feed.atom"
   },
   {
+    "path": "blogs",
+    "name": "Anton Zhiyanov",
+    "url": "https://antonz.org/index.xml"
+  },
+  {
     "path": "forums",
     "name": "Reddit",
     "url": "https://www.reddit.com/r/golang.rss"
