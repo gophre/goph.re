@@ -1,3 +1,4 @@
+
 #!/usr/bin/bash
 GOODPATH="$(cd -P "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 cd $GOODPATH
