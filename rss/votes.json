@@ -778,5 +778,77 @@
     "value": 1,
     "user_id": "60765",
     "timestamp": "2025-12-21T19:27:00.157093751+01:00"
+  },
+  {
+    "article_id": "170e450eec55df53c04d6e292ec99899",
+    "value": 1,
+    "user_id": "60765",
+    "timestamp": "2026-02-15T18:24:14.43287706+01:00"
+  },
+  {
+    "article_id": "8174b2e625e15e3115ce2d97e595a752",
+    "value": 1,
+    "user_id": "60765",
+    "timestamp": "2026-02-15T18:24:19.506168292+01:00"
+  },
+  {
+    "article_id": "5ba2f8fe8f65c54b232cfba0164255ce",
+    "value": 1,
+    "user_id": "60765",
+    "timestamp": "2026-02-15T18:24:23.957197914+01:00"
+  },
+  {
+    "article_id": "5fc7faef812647a6dc708027c3aea15f",
+    "value": 1,
+    "user_id": "60765",
+    "timestamp": "2026-02-15T18:24:30.135147315+01:00"
+  },
+  {
+    "article_id": "09eb533d0023d289667ab08be962faf3",
+    "value": 1,
+    "user_id": "60765",
+    "timestamp": "2026-02-15T18:24:41.902114235+01:00"
+  },
+  {
+    "article_id": "6b570963de0cd00412b0c3fc477b0c19",
+    "value": 1,
+    "user_id": "60765",
+    "timestamp": "2026-02-15T18:24:47.546880589+01:00"
+  },
+  {
+    "article_id": "ef877bff0b5dd758a0823a32a408cc98",
+    "value": 1,
+    "user_id": "60765",
+    "timestamp": "2026-02-15T18:24:53.892676861+01:00"
+  },
+  {
+    "article_id": "836df9156ad1e9cbe5173da9e1a8c759",
+    "value": 1,
+    "user_id": "60765",
+    "timestamp": "2026-02-15T18:25:01.326841706+01:00"
+  },
+  {
+    "article_id": "daf3b1273d2f6045cc3c3a38134cb81a",
+    "value": 1,
+    "user_id": "60765",
+    "timestamp": "2026-02-15T18:25:33.868911138+01:00"
+  },
+  {
+    "article_id": "4542b7e5ef88c7f72389d664ecadce86",
+    "value": 1,
+    "user_id": "60765",
+    "timestamp": "2026-02-15T18:25:36.409143656+01:00"
+  },
+  {
+    "article_id": "d4f4f9dd36b56403c5326406fec918b9",
+    "value": 1,
+    "user_id": "60765",
+    "timestamp": "2026-02-15T18:26:58.950842962+01:00"
+  },
+  {
+    "article_id": "a93e2a776c45dc751898d05bc5ea60b5",
+    "value": 1,
+    "user_id": "60765",
+    "timestamp": "2026-02-15T18:27:03.229193253+01:00"
   }
 ]
