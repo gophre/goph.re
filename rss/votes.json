@@ -850,5 +850,47 @@
     "value": 1,
     "user_id": "60765",
     "timestamp": "2026-02-15T18:27:03.229193253+01:00"
+  },
+  {
+    "article_id": "5cc84763700ebfc5f237e361d1c27dad",
+    "value": 1,
+    "user_id": "60765",
+    "timestamp": "2026-05-28T13:28:05.05018126+02:00"
+  },
+  {
+    "article_id": "293f83d6bd5850f4ccea024eab62c81e",
+    "value": 1,
+    "user_id": "60765",
+    "timestamp": "2026-05-28T13:28:13.867655914+02:00"
+  },
+  {
+    "article_id": "21ef0554d59921c712770e08c51036d1",
+    "value": 1,
+    "user_id": "60765",
+    "timestamp": "2026-05-28T13:28:31.832836573+02:00"
+  },
+  {
+    "article_id": "2b4c1422f5b91979fabcc098fbd822e9",
+    "value": 1,
+    "user_id": "60765",
+    "timestamp": "2026-05-28T13:28:38.752412431+02:00"
+  },
+  {
+    "article_id": "7d7a8640bcd8e3611f75516a73b4729b",
+    "value": 1,
+    "user_id": "60765",
+    "timestamp": "2026-05-28T13:29:09.899814545+02:00"
+  },
+  {
+    "article_id": "7a6db92b6972bc509c114fe265d2c340",
+    "value": 1,
+    "user_id": "60765",
+    "timestamp": "2026-05-28T13:29:21.989247502+02:00"
+  },
+  {
+    "article_id": "fe9091d1865d3b0cbd3b36af3bdb1733",
+    "value": 1,
+    "user_id": "60765",
+    "timestamp": "2026-05-28T13:29:47.213144821+02:00"
   }
 ]
