@@ -1,0 +1,67 @@
+[
+  {
+    "path":"official",
+    "name":"GO.DEV Blog",
+    "url":"https://go.dev/blog/feed.atom"
+  },
+  {
+    "path":"official",
+    "name":"Go Release Notes",
+    "url":"https://go.dev/doc/devel/release.atom"
+  },
+  {
+    "path":"official",
+    "name":"Go Vulnerabilities",
+    "url":"https://pkg.go.dev/vuln/feed.xml"
+  },
+  {
+    "path":"weekly",
+    "name":"Golang Weekly",
+    "url":"https://cprss.s3.amazonaws.com/golangweekly.com.xml"
+  },
+  {
+    "path":"experts",
+    "name":"Anton Zhiyanov",
+    "url":"https://antonz.org/index.xml"
+  },
+  {
+    "path":"experts",
+    "name":"Dave Cheney",
+    "url":"https://dave.cheney.net/feed"
+  },
+  {
+    "path":"experts",
+    "name":"Eli Bendersky",
+    "url":"https://eli.thegreenplace.net/feeds/all.atom.xml"
+  },
+  {
+    "path":"experts",
+    "name":"Alex Edwards",
+    "url":"https://www.alexedwards.net/static/feed.rss"
+  },
+  {
+    "path":"experts",
+    "name":"Applied Go",
+    "url":"https://appliedgo.net/index.xml"
+  },
+  {
+    "path":"experts",
+    "name":"Bitfield Consulting",
+    "url":"https://bitfieldconsulting.com/golang/rss.xml"
+  },
+  {
+    "path":"community",
+    "name":"Reddit r/golang",
+    "url":"https://www.reddit.com/r/golang.rss"
+  },
+  {
+    "path":"community",
+    "name":"Hacker News - golang",
+    "url":"https://hnrss.org/newest?q=golang"
+  },
+  {
+    "path":"podcasts",
+    "name":"Go Time",
+    "url":"https://changelog.com/gotime/feed"
+  }
+]

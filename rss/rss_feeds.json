@@ -45,11 +45,6 @@
     "url": "https://changelog.com/gotime/feed"
   },
   {
-    "path": "blogs",
-    "name": "BOOT.DEV",
-    "url": "https://blog.boot.dev/index.xml"
-  },
-  {
     "path": "examples",
     "name": "The Coding Gopher",
     "url": "https://www.youtube.com/feeds/videos.xml?channel_id=UC-mTIBh__DzAqW495JHXy5A"
@@ -60,9 +55,24 @@
     "url": "https://www.ardanlabs.com/blog/index.xml"
   },
   {
-    "path": "blogs",
-    "name": "Goland.ch",
-    "url": "https://golang.ch/feed/"
+    "path":"experts",
+    "name":"Alex Edwards",
+    "url":"https://www.alexedwards.net/static/feed.rss"
+  },
+  {
+    "path":"experts",
+    "name":"Bitfield Consulting",
+    "url":"https://bitfieldconsulting.com/golang/rss.xml"
+  },
+  {
+    "path":"community",
+    "name":"Hacker News Go",
+    "url":"https://hnrss.org/newest?q=golang"
+  },
+  {
+    "path":"official",
+    "name":"Go Vulnerabilities",
+    "url":"https://pkg.go.dev/vuln/feed.xml"
   },
   {
     "path": "examples",
